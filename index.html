@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجري PRO</title>
+<title>متجري الإلكتروني PRO</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -14,16 +14,17 @@ background:#f5f6fa;
 }
 
 .header{
-background:#008751;
+background:linear-gradient(135deg,#008751,#00a86b);
 color:white;
 text-align:center;
-padding:20px;
-border-radius:0 0 20px 20px;
+padding:25px;
+border-radius:0 0 25px 25px;
 }
 
 .card{
 border:none;
 border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
 .product-img{
@@ -35,7 +36,7 @@ border-radius:15px;
 
 .price{
 color:red;
-font-size:22px;
+font-size:24px;
 font-weight:bold;
 }
 
@@ -47,11 +48,11 @@ color:gray;
 .btn-buy{
 background:#008751;
 color:white;
-padding:12px;
-border-radius:30px;
 border:none;
-width:100%;
+padding:14px;
+border-radius:50px;
 font-weight:bold;
+width:100%;
 transition:0.3s;
 }
 
@@ -60,18 +61,20 @@ transform:scale(1.03);
 opacity:0.9;
 }
 
-.box{
-background:#fff;
-padding:15px;
-border-radius:15px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.total{
+.total-box{
 background:#e9f7ef;
 padding:10px;
 border-radius:10px;
 font-weight:bold;
+}
+
+.contact-box{
+background:#fff;
+padding:15px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+text-align:center;
+margin-top:15px;
 }
 </style>
 </head>
@@ -89,7 +92,7 @@ font-weight:bold;
 
 <div class="col-md-5">
 
-<div class="card p-3 box">
+<div class="card p-3">
 
 <img src="https://via.placeholder.com/500x400.png?text=Product" class="product-img">
 
@@ -98,40 +101,48 @@ font-weight:bold;
 <div class="old-price">9000 دج</div>
 <div class="price">5500 دج</div>
 
-<p>✔️ جودة عالية<br>✔️ ضمان<br>✔️ توصيل 58 ولاية</p>
+<p>
+✔️ جودة عالية<br>
+✔️ ضمان<br>
+✔️ توصيل لكل الولايات
+</p>
 
 <input id="name" class="form-control mb-2" placeholder="الاسم الكامل">
 <input id="phone" class="form-control mb-2" placeholder="رقم الهاتف">
 
-<select id="wilaya" class="form-select mb-2" onchange="calcPrice()">
+<select id="wilaya" class="form-select mb-2">
 <option value="">اختر الولاية</option>
-<option data-price="300">الجزائر</option>
-<option data-price="300">وهران</option>
-<option data-price="400">قسنطينة</option>
-<option data-price="400">سطيف</option>
-<option data-price="400">باتنة</option>
-<option data-price="400">تلمسان</option>
-<option data-price="400">عنابة</option>
-<option data-price="500">ورقلة</option>
-<option data-price="600">تمنراست</option>
-</select>
-
-<select id="shipping" class="form-select mb-2">
-<option value="">اختر شركة التوصيل</option>
-<option>Yalidine</option>
-<option>ZR Express</option>
-<option>توصيل خاص</option>
-<option>أخرى</option>
+<option>الجزائر</option>
+<option>وهران</option>
+<option>قسنطينة</option>
+<option>سطيف</option>
+<option>باتنة</option>
+<option>تلمسان</option>
+<option>عنابة</option>
 </select>
 
 <textarea id="address" class="form-control mb-2" placeholder="العنوان الكامل"></textarea>
 
-<div class="total mb-2">
-🚚 التوصيل: <span id="delivery">0</span> دج<br>
-💵 المجموع: <span id="total">5500</span> دج
+<button class="btn-buy" onclick="order()">🛒 اطلب الآن عبر واتساب</button>
+
 </div>
 
-<button class="btn-buy" onclick="order()">اطلب الآن عبر واتساب</button>
+<!-- CONTACT -->
+<div class="contact-box">
+
+<h5 class="mb-3">📞 اتصل بنا</h5>
+
+<a href="https://wa.me/213663190202" target="_blank" class="btn btn-success w-100 mb-2">
+💬 واتساب
+</a>
+
+<a href="https://www.facebook.com/share/1LWoyVPK99/" target="_blank" class="btn btn-primary w-100 mb-2">
+📘 فيسبوك
+</a>
+
+<a href="tel:0663190202" class="btn btn-dark w-100">
+📞 اتصال مباشر
+</a>
 
 </div>
 
@@ -143,26 +154,12 @@ font-weight:bold;
 
 <script>
 
-let basePrice = 5500;
-
-function calcPrice(){
-let w=document.getElementById("wilaya");
-let price=w.options[w.selectedIndex].getAttribute("data-price")||0;
-
-document.getElementById("delivery").innerText=price;
-document.getElementById("total").innerText=basePrice+parseInt(price);
-}
-
 function order(){
 
 let name=document.getElementById("name").value;
 let phone=document.getElementById("phone").value;
 let wilaya=document.getElementById("wilaya").value;
-let shipping=document.getElementById("shipping").value;
 let address=document.getElementById("address").value;
-
-let delivery=document.getElementById("delivery").innerText;
-let total=document.getElementById("total").innerText;
 
 if(!name || !phone || !wilaya){
 alert("اكمل المعلومات!");
@@ -173,13 +170,10 @@ let msg=`🛒 طلب جديد
 
 📦 المنتج: منتج احترافي
 💰 السعر: 5500 دج
-🚚 التوصيل: ${delivery} دج
-💵 المجموع: ${total} دج
 
 👤 الاسم: ${name}
 📞 الهاتف: ${phone}
 📍 الولاية: ${wilaya}
-🚚 الشركة: ${shipping}
 🏠 العنوان: ${address}`;
 
 let url="https://wa.me/213663190202?text="+encodeURIComponent(msg);
