@@ -3,203 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجري PRO MAX</title>
+<title>متجري PRO</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-:root { --main:#008751; }
-
-body {
-    background:#f4f6f9;
-    font-family:'Segoe UI';
+body{
+font-family: Arial;
+background:#f5f6fa;
 }
 
-.card {
-    border-radius:20px;
+.header{
+background:#008751;
+color:white;
+text-align:center;
+padding:20px;
+border-radius:0 0 20px 20px;
 }
 
-.product-img {
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:15px;
+.card{
+border:none;
+border-radius:20px;
 }
 
-.btn-main {
-    background:var(--main);
-    color:#fff;
-    border:none;
-    padding:15px;
-    border-radius:50px;
-    font-weight:bold;
-    transition:.3s;
+.product-img{
+width:100%;
+max-height:350px;
+object-fit:cover;
+border-radius:15px;
 }
 
-.btn-main:hover {
-    transform:scale(1.05);
+.price{
+color:red;
+font-size:22px;
+font-weight:bold;
 }
 
-.badge-sale {
-    background:red;
-    color:white;
-    padding:5px 12px;
-    border-radius:20px;
+.old-price{
+text-decoration:line-through;
+color:gray;
 }
 
-.total-box {
-    background:#e9f7ef;
-    padding:12px;
-    border-radius:10px;
-    font-weight:bold;
+.btn-buy{
+background:#008751;
+color:white;
+padding:12px;
+border-radius:30px;
+border:none;
+width:100%;
+font-weight:bold;
+transition:0.3s;
 }
 
-.toast-box {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#000;
-    color:#fff;
-    padding:10px 15px;
-    border-radius:10px;
-    display:none;
+.btn-buy:hover{
+transform:scale(1.03);
+opacity:0.9;
+}
+
+.box{
+background:#fff;
+padding:15px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.total{
+background:#e9f7ef;
+padding:10px;
+border-radius:10px;
+font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container my-5">
-<div class="row g-4 justify-content-center">
-
-<!-- PRODUCT -->
-<div class="col-lg-5">
-<div class="card p-3 shadow border-0 text-center">
-
-<span class="badge-sale">🔥 عرض محدود</span>
-
-<img src="https://via.placeholder.com/500x500.png?text=Product" class="product-img my-3">
-
-<h3 class="fw-bold">ساعة ذكية Ultra 2026</h3>
-
-<div class="h4 text-danger fw-bold">5500 دج</div>
-
-<p id="countdown"></p>
-
-<div class="mt-2">
-⭐ 4.8 (124 تقييم)
+<div class="header">
+<h2>🛒 متجري الإلكتروني</h2>
+<p>توصيل لكل الولايات + الدفع عند الاستلام</p>
 </div>
 
-</div>
-</div>
+<div class="container my-4">
 
-<!-- FORM -->
-<div class="col-lg-5">
-<div class="card p-4 shadow border-0">
+<div class="row justify-content-center">
 
-<h4 class="text-center mb-3">إتمام الطلب</h4>
+<div class="col-md-5">
+
+<div class="card p-3 box">
+
+<img src="https://via.placeholder.com/500x400.png?text=Product" class="product-img">
+
+<h4 class="mt-2">منتج احترافي</h4>
+
+<div class="old-price">9000 دج</div>
+<div class="price">5500 دج</div>
+
+<p>✔️ جودة عالية<br>✔️ ضمان<br>✔️ توصيل 58 ولاية</p>
 
 <input id="name" class="form-control mb-2" placeholder="الاسم الكامل">
 <input id="phone" class="form-control mb-2" placeholder="رقم الهاتف">
 
-<select id="wilaya" class="form-select mb-2" onchange="calc()">
+<select id="wilaya" class="form-select mb-2" onchange="calcPrice()">
 <option value="">اختر الولاية</option>
-<option data-p="300">16 - الجزائر</option>
-<option data-p="300">31 - وهران</option>
-<option data-p="400">19 - سطيف</option>
-<option data-p="400">25 - قسنطينة</option>
-<option data-p="400">13 - تلمسان</option>
-<option data-p="400">05 - باتنة</option>
+<option data-price="300">الجزائر</option>
+<option data-price="300">وهران</option>
+<option data-price="400">قسنطينة</option>
+<option data-price="400">سطيف</option>
+<option data-price="400">باتنة</option>
+<option data-price="400">تلمسان</option>
+<option data-price="400">عنابة</option>
+<option data-price="500">ورقلة</option>
+<option data-price="600">تمنراست</option>
 </select>
 
 <select id="shipping" class="form-select mb-2">
+<option value="">اختر شركة التوصيل</option>
 <option>Yalidine</option>
 <option>ZR Express</option>
+<option>توصيل خاص</option>
+<option>أخرى</option>
 </select>
 
-<div class="d-flex align-items-center mb-3">
-<label class="me-2">الكمية:</label>
-<input type="number" id="qty" value="1" min="1" class="form-control">
+<textarea id="address" class="form-control mb-2" placeholder="العنوان الكامل"></textarea>
+
+<div class="total mb-2">
+🚚 التوصيل: <span id="delivery">0</span> دج<br>
+💵 المجموع: <span id="total">5500</span> دج
 </div>
 
-<textarea id="address" class="form-control mb-3" placeholder="العنوان"></textarea>
+<button class="btn-buy" onclick="order()">اطلب الآن عبر واتساب</button>
 
-<div class="total-box mb-3">
-المنتج: <span id="p">5500</span> دج<br>
-التوصيل: <span id="d">0</span> دج<br>
-المجموع: <span id="t">5500</span> دج
-</div>
-
-<button onclick="order()" class="btn-main w-100 mb-2">طلب عبر واتساب</button>
-
-<a href="tel:0550000000" class="btn btn-dark w-100">اتصل الآن</a>
-
-</div>
 </div>
 
 </div>
+
 </div>
 
-<div id="toast" class="toast-box">تم الإرسال ✅</div>
+</div>
 
 <script>
-// COUNTDOWN
-let time=600;
-setInterval(()=>{
-let m=Math.floor(time/60);
-let s=time%60;
-document.getElementById("countdown").innerText="ينتهي خلال "+m+":"+(s<10?"0"+s:s);
-if(time>0) time--;
-},1000);
 
-// CALC
-let price=5500;
+let basePrice = 5500;
 
-function calc(){
+function calcPrice(){
 let w=document.getElementById("wilaya");
-let d=w.options[w.selectedIndex].getAttribute("data-p")||0;
-let q=document.getElementById("qty").value||1;
+let price=w.options[w.selectedIndex].getAttribute("data-price")||0;
 
-document.getElementById("d").innerText=d;
-document.getElementById("t").innerText=(price*q)+parseInt(d);
+document.getElementById("delivery").innerText=price;
+document.getElementById("total").innerText=basePrice+parseInt(price);
 }
 
-// ORDER
 function order(){
+
 let name=document.getElementById("name").value;
 let phone=document.getElementById("phone").value;
 let wilaya=document.getElementById("wilaya").value;
-let qty=document.getElementById("qty").value;
-let d=document.getElementById("d").innerText;
-let t=document.getElementById("t").innerText;
-let ship=document.getElementById("shipping").value;
+let shipping=document.getElementById("shipping").value;
 let address=document.getElementById("address").value;
+
+let delivery=document.getElementById("delivery").innerText;
+let total=document.getElementById("total").innerText;
 
 if(!name || !phone || !wilaya){
 alert("اكمل المعلومات!");
 return;
 }
 
-let msg=`طلب جديد 🛒
+let msg=`🛒 طلب جديد
 
-📦 المنتج: ساعة Ultra 2026
-🔢 الكمية: ${qty}
-🚚 شركة التوصيل: ${ship}
-💰 السعر: ${price}
-🚛 التوصيل: ${d}
-💵 المجموع: ${t}
+📦 المنتج: منتج احترافي
+💰 السعر: 5500 دج
+🚚 التوصيل: ${delivery} دج
+💵 المجموع: ${total} دج
 
-👤 ${name}
-📞 ${phone}
-📍 ${wilaya}
-🏠 ${address}`;
+👤 الاسم: ${name}
+📞 الهاتف: ${phone}
+📍 الولاية: ${wilaya}
+🚚 الشركة: ${shipping}
+🏠 العنوان: ${address}`;
 
-window.open("https://wa.me/213XXXXXXXXX?text="+encodeURIComponent(msg));
+let url="https://wa.me/213663190202?text="+encodeURIComponent(msg);
 
-let toast=document.getElementById("toast");
-toast.style.display="block";
-setTimeout(()=>toast.style.display="none",3000);
+window.open(url,"_blank");
+
 }
+
 </script>
 
 </body>
