@@ -1,179 +1,298 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجري الإلكتروني PRO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري الاحترافي</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --main-color: #2c3e50; /* لون كلاسيكي فخم */
+            --accent-color: #27ae60; /* لون الطلب والشراء */
+            --bg-light: #f8f9fa;
+        }
 
-<style>
-/* --- كود شاشة تسجيل الدخول المتوهجة --- */
-#login-screen {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #1c1c1c;
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999; /* ليكون فوق كل شيء */
-}
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+        }
 
-.box {
-    position: relative; width: 350px; height: 420px;
-    background: #1c1c1c; border-radius: 8px; overflow: hidden;
-}
+        /* الهيدر الاحترافي */
+        .header {
+            background: white;
+            padding: 30px 15px;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+        }
 
-.box::before {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 350px; height: 420px;
-    background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
-    transform-origin: bottom right; animation: animate 6s linear infinite;
-}
+        .header h2 {
+            font-weight: 700;
+            color: var(--main-color);
+            margin-bottom: 5px;
+        }
 
-.box::after {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 350px; height: 420px;
-    background: linear-gradient(0deg, transparent, #ff2770, #ff2770);
-    transform-origin: bottom right; animation: animate 6s linear infinite; animation-delay: -3s;
-}
+        .header p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
 
-@keyframes animate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+        /* بطاقة المنتج المطورة */
+        .card-product {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
 
-.login-form {
-    position: absolute; inset: 4px; background: #28292d;
-    border-radius: 8px; z-index: 10; display: flex;
-    flex-direction: column; padding: 40px;
-}
+        .product-img-wrapper {
+            position: relative;
+            background: #eee;
+        }
 
-.login-form h2 { color: #fff; text-align: center; margin-bottom: 20px; }
+        .product-img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+        }
 
-.inputBx { position: relative; width: 100%; margin-top: 20px; }
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
 
-.inputBx input {
-    width: 100%; padding: 10px 35px 10px 10px;
-    background: #1c1c1c; border: none; outline: none;
-    color: #fff; border-radius: 4px;
-}
+        /* السعر والتنسيق */
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
 
-.inputBx i { position: absolute; right: 10px; top: 13px; color: #45f3ff; }
+        .price-new {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
 
-.btn-login {
-    background: #45f3ff; color: #1c1c1c; font-weight: bold;
-    border: none; padding: 10px; margin-top: 20px; border-radius: 4px; cursor: pointer;
-}
+        .price-old {
+            text-decoration: line-through;
+            color: #95a5a6;
+            font-size: 1.1rem;
+        }
 
-/* --- تنسيقات المتجر الأصلية --- */
-body { font-family: Arial; background:#f5f6fa; }
+        /* حقول الإدخال */
+        .form-control, .form-select {
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
 
-.header {
-    background:linear-gradient(135deg,#008751,#00a86b);
-    color:white; text-align:center; padding:25px;
-    border-radius:0 0 25px 25px;
-}
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.1);
+        }
 
-.card { border:none; border-radius:20px; box-shadow:0 5px 15px rgba(0,0,0,0.08); }
+        /* زر الطلب الفاخر */
+        .btn-order {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
 
-.product-img { width:100%; max-height:350px; object-fit:cover; border-radius:15px; }
+        .btn-order:hover {
+            background: #219150;
+            transform: translateY(-2px);
+        }
 
-.price { color:red; font-size:24px; font-weight:bold; }
+        /* قسم التواصل */
+        .contact-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
 
-.old-price { text-decoration:line-through; color:gray; }
+        .pill {
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.btn-buy {
-    background:#008751; color:white; border:none; padding:14px;
-    border-radius:50px; font-weight:bold; width:100%; transition:0.3s;
-}
-
-.btn-buy:hover { transform:scale(1.03); opacity:0.9; }
-
-.contact-box {
-    background:#fff; padding:15px; border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1); text-align:center; margin-top:15px;
-}
-</style>
+        .pill-wa { background: #25D366; color: white; }
+        .pill-phone { background: #34495e; color: white; }
+    </style>
 </head>
 
 <body>
 
-<div id="login-screen">
-    <div class="box">
-        <div class="login-form">
-            <h2>دخول المتجر</h2>
-            <div class="inputBx">
-                <input type="text" placeholder="اسم المستخدم">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="inputBx">
-                <input type="password" placeholder="كلمة المرور">
-                <i class="fa-solid fa-lock"></i>
-            </div>
-            <button class="btn-login" onclick="hideLogin()">دخول</button>
-        </div>
-    </div>
+<div class="header">
+    <h2><i class="fas fa-shopping-bag"></i> متجري المتميز</h2>
+    <p>جودة مضمونة • توصيل سريع • دفع عند الاستلام</p>
 </div>
 
-<div id="main-content">
-    <div class="header">
-        <h2>🛒 متجري الإلكتروني</h2>
-        <p>توصيل لكل الولايات + الدفع عند الاستلام</p>
-    </div>
-
-    <div class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="card p-3">
-                    <img src="https://via.placeholder.com/500x400.png?text=Product" class="product-img">
-                    <h4 class="mt-2">منتج احترافي</h4>
-                    <div class="old-price">9000 دج</div>
-                    <div class="price">5500 دج</div>
-                    <p>✔️ جودة عالية<br>✔️ ضمان<br>✔️ توصيل لكل الولايات</p>
-                    
-                    <input id="name" class="form-control mb-2" placeholder="الاسم الكامل">
-                    <input id="phone" class="form-control mb-2" placeholder="رقم الهاتف">
-                    <select id="wilaya" class="form-select mb-2">
-                        <option value="">اختر الولاية</option>
-                        <option>31 - وهران</option>
-                        <option>16 - الجزائر</option>
-                        </select>
-                    <textarea id="address" class="form-control mb-2" placeholder="العنوان الكامل"></textarea>
-                    <button class="btn-buy" onclick="order()">🛒 اطلب الآن عبر واتساب</button>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            
+            <div class="card-product p-3">
+                <div class="product-img-wrapper">
+                    <span class="badge-discount">تخفيض لفترة محدودة</span>
+                    <img src="https://via.placeholder.com/600x600.png?text=Product+Image" class="product-img" alt="منتج">
                 </div>
 
-                <div class="contact-box">
-                    <h5 class="mb-3">📞 اتصل بنا</h5>
-                    <a href="https://wa.me/213663190202" target="_blank" class="btn btn-success w-100 mb-2">💬 واتساب</a>
-                    <a href="tel:0663190202" class="btn btn-dark w-100">📞 اتصال مباشر</a>
+                <div class="mt-4">
+                    <h4>اسم المنتج الاحترافي</h4>
+                    <div class="price-section">
+                        <span class="price-new">5500 دج</span>
+                        <span class="price-old">8900 دج</span>
+                    </div>
+                    
+                    <ul class="list-unstyled mb-4 text-muted">
+                        <li><i class="fas fa-check-circle text-success"></i> ضمان استبدال لمدة 30 يوم</li>
+                        <li><i class="fas fa-truck text-primary"></i> التوصيل إلى 58 ولاية</li>
+                        <li><i class="fas fa-shield-alt text-warning"></i> فحص المنتج قبل الدفع</li>
+                    </ul>
+
+                    <div class="order-form bg-light p-3 rounded">
+                        <h6 class="mb-3">أدخل معلوماتك لإتمام الطلب:</h6>
+                        <input id="name" class="form-control" placeholder="الاسم الكامل">
+                        <input id="phone" class="form-control" placeholder="رقم الهاتف">
+                        <select id="wilaya" class="form-select">
+                            <select id="wilaya" class="form-select">
+    <option value="">اختر الولاية</option>
+    <option>01 - أدرار</option>
+    <option>02 - الشلف</option>
+    <option>03 - الأغواط</option>
+    <option>04 - أم البواقي</option>
+    <option>05 - باتنة</option>
+    <option>06 - بجاية</option>
+    <option>07 - بسكرة</option>
+    <option>08 - بشار</option>
+    <option>09 - البليدة</option>
+    <option>10 - البويرة</option>
+    <option>11 - تمنراست</option>
+    <option>12 - تبسة</option>
+    <option>13 - تلمسان</option>
+    <option>14 - تيارت</option>
+    <option>15 - تيزي وزو</option>
+    <option>16 - الجزائر</option>
+    <option>17 - الجلفة</option>
+    <option>18 - جيجل</option>
+    <option>19 - سطيف</option>
+    <option>20 - سعيدة</option>
+    <option>21 - سكيكدة</option>
+    <option>22 - سيدي بلعباس</option>
+    <option>23 - عنابة</option>
+    <option>24 - قالمة</option>
+    <option>25 - قسنطينة</option>
+    <option>26 - المدية</option>
+    <option>27 - مستغانم</option>
+    <option>28 - المسيلة</option>
+    <option>29 - معسكر</option>
+    <option>30 - ورقلة</option>
+    <option>31 - وهران</option>
+    <option>32 - البيض</option>
+    <option>33 - إليزي</option>
+    <option>34 - برج بوعريريج</option>
+    <option>35 - بومرداس</option>
+    <option>36 - الطارف</option>
+    <option>37 - تندوف</option>
+    <option>38 - تسمسيلت</option>
+    <option>39 - الوادي</option>
+    <option>40 - خنشلة</option>
+    <option>41 - سوق أهراس</option>
+    <option>42 - تيبازة</option>
+    <option>43 - ميلة</option>
+    <option>44 - عين الدفلى</option>
+    <option>45 - النعامة</option>
+    <option>46 - عين تموشنت</option>
+    <option>47 - غرداية</option>
+    <option>48 - غليزان</option>
+    <option>49 - تيميمون</option>
+    <option>50 - برج باجي مختار</option>
+    <option>51 - أولاد جلال</option>
+    <option>52 - بني عباس</option>
+    <option>53 - عين صالح</option>
+    <option>54 - عين قزام</option>
+    <option>55 - تقرت</option>
+    <option>56 - جانت</option>
+    <option>57 - المغير</option>
+    <option>58 - المنيعة</option>
+</select>
+
+                        <textarea id="address" class="form-control" placeholder="العنوان بالتفصيل"></textarea>
+                        
+                        <button class="btn-order" onclick="order()">
+                            <i class="fab fa-whatsapp"></i> تأكيد الطلب عبر واتساب
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <div class="contact-pills">
+                <a href="https://wa.me/213663190202" class="pill pill-wa"><i class="fab fa-whatsapp"></i> واتساب</a>
+                <a href="tel:0663190202" class="pill pill-phone"><i class="fas fa-phone"></i> اتصل بنا</a>
+            </div>
+
         </div>
     </div>
 </div>
 
 <script>
-// وظيفة لإخفاء شاشة الدخول
-function hideLogin() {
-    document.getElementById("login-screen").style.display = "none";
-}
+    function order(){
+        let name = document.getElementById("name").value;
+        let phone = document.getElementById("phone").value;
+        let wilaya = document.getElementById("wilaya").value;
+        let address = document.getElementById("address").value;
 
-// وظيفة الطلب الأصلية
-function order(){
-    let name=document.getElementById("name").value;
-    let phone=document.getElementById("phone").value;
-    let wilaya=document.getElementById("wilaya").value;
-    let address=document.getElementById("address").value;
+        if(!name || !phone || !wilaya){
+            alert("يرجى ملء الحقول الأساسية (الاسم، الهاتف، الولاية)");
+            return;
+        }
 
-    if(!name || !phone || !wilaya){
-        alert("اكمل المعلومات!");
-        return;
+        let msg = `*طلب جديد من المتجر* 🛒%0A%0A` +
+                  `*المنتج:* اسم المنتج الاحترافي%0A` +
+                  `*السعر:* 5500 دج%0A%0A` +
+                  `*الاسم:* ${name}%0A` +
+                  `*الهاتف:* ${phone}%0A` +
+                  `*الولاية:* ${wilaya}%0A` +
+                  `*العنوان:* ${address}`;
+
+        window.open(`https://wa.me/213663190202?text=${msg}`, "_blank");
     }
-
-    let msg=`🛒 طلب جديد\n\n📦 المنتج: منتج احترافي\n💰 السعر: 5500 دج\n\n👤 الاسم: ${name}\n📞 الهاتف: ${phone}\n📍 الولاية: ${wilaya}\n🏠 العنوان: ${address}`;
-    let url="https://wa.me/213663190202?text="+encodeURIComponent(msg);
-    window.open(url,"_blank");
-}
 </script>
 
 </body>
