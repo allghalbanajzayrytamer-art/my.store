@@ -11,4 +11,4 @@
 [اضغط هنا لزيارة الموقع](https://allghalbanajzayrytamer-art.github.io/my.store/)
 
 ---
-تم التطوير بواسطة: **allghalbanajzayrytamer-art** 💻
+تم التطوير بواسطة: **amine-ov-art** 💻
