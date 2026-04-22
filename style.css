@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #1c1c1c; /* لون خلفية داكن */
+}
+
+/* الإطار الخارجي المتوهج */
+.box {
+    position: relative;
+    width: 380px;
+    height: 450px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* تأثير الخط المتحرك المتوهج */
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 450px;
+    background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+
+.box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 450px;
+    background: linear-gradient(0deg, transparent, #ff2770, #ff2770);
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+
+@keyframes animate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* واجهة النموذج الداخلية */
+.login {
+    position: absolute;
+    inset: 4px; /* لترك مسافة للإطار المتوهج */
+    background: #28292d;
+    border-radius: 8px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.login h2 {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+}
+
+.inputBx {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.inputBx input {
+    width: 100%;
+    padding: 10px 35px 10px 10px;
+    background: #1c1c1c;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 4px;
+}
+
+.inputBx i {
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    color: #45f3ff;
+}
+
+/* زر تسجيل الدخول */
+.inputBx input[type="submit"] {
+    background: #45f3ff;
+    color: #1c1c1c;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.5s;
+    padding: 10px;
+}
+
+.inputBx input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+/* الروابط */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #8f8f8f;
+    text-decoration: none;
+    font-size: 0.75em;
+}
+
+.links a:hover {
+    color: #45f3ff;
+}
