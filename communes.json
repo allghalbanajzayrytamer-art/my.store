@@ -1,9 +1,9 @@
-fetch("wilayas-with-municipalities.json")
-  .then(res => res.json())
-  .then(data => {
-    window.algeriaData = {};
-    
-    data.forEach(w => {
-      window.algeriaData[w.nameFr] = w.communes.map(c => c.nameFr);
-    });
-  });
+const fs = require("fs");
+const data = require("./source-algeria.json"); // الداتا الكاملة
+
+fs.writeFileSync(
+  "communes.json",
+  JSON.stringify(data, null, 2)
+);
+
+console.log("✅ communes.json created successfully");
