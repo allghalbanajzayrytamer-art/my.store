@@ -31,55 +31,17 @@ body {
 .logo-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 28px;
-    letter-spacing: 2px;
 }
 
-.logo-title span {
-    color: #00ffcc;
-}
+.logo-title span { color: #00ffcc; }
 
-.logo-sub {
-    font-size: 13px;
-    opacity: 0.8;
-}
+.logo-sub { font-size: 13px; opacity: 0.8; }
 
-.logo-badge {
-    margin-top: 10px;
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 50px;
-    background: #00ffcc;
-    color: #000;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-/* Counter */
-.counter {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Card */
 .card-product {
     background: white;
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    animation: fadeIn 0.6s ease;
-    transition: 0.3s;
-}
-
-.card-product:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
 }
 
 .product-img {
@@ -121,18 +83,9 @@ body {
 
 <!-- LOGO -->
 <div class="logo-container">
-    <div class="logo-title">
-        Zenix <span>Store</span>
-    </div>
-    <div class="logo-sub">
-        by AMINE OV
-    </div>
-    <div class="logo-badge">
-        Premium Shop
-    </div>
+    <div class="logo-title">Zenix <span>Store</span></div>
+    <div class="logo-sub">by AMINE OV</div>
 </div>
-
-<p class="counter">🔥 أكثر من 27 طلب اليوم!</p>
 
 <div class="container mt-4">
 <div class="row justify-content-center">
@@ -142,90 +95,23 @@ body {
 
 <img src="https://via.placeholder.com/600x600.png?text=Product" class="product-img">
 
-<h4 class="mt-3">اسم المنتج الاحترافي</h4>
+<h4 class="mt-3">اسم المنتج</h4>
 
-<div>⭐⭐⭐⭐⭐ (124 تقييم)</div>
+<p>⭐⭐⭐⭐⭐ (124 تقييم)</p>
 
-<p class="text-muted">
-منتج عالي الجودة مصمم ليعطيك أفضل تجربة يومية. 
-مناسب للاستعمال اليومي ويدوم طويلاً.
-</p>
+<p class="price-new">5500 دج <span class="price-old">8900 دج</span></p>
 
-<div class="mb-2">
-<span class="price-new">5500 دج</span>
-<span class="price-old">8900 دج</span>
-</div>
-
-<ul class="text-muted">
+<ul>
 <li>✔ توصيل 58 ولاية</li>
 <li>✔ الدفع عند الاستلام</li>
 </ul>
 
-<div class="bg-light p-3 rounded">
-
+<!-- FORM -->
 <input id="name" class="form-control" placeholder="الاسم الكامل">
 <input id="phone" class="form-control" placeholder="رقم الهاتف">
 
 <select id="wilaya" class="form-select">
-<option value="">اختر الولاية</option>
-<option>01 - أدرار</option>
-<option>02 - الشلف</option>
-<option>03 - الأغواط</option>
-<option>04 - أم البواقي</option>
-<option>05 - باتنة</option>
-<option>06 - بجاية</option>
-<option>07 - بسكرة</option>
-<option>08 - بشار</option>
-<option>09 - البليدة</option>
-<option>10 - البويرة</option>
-<option>11 - تمنراست</option>
-<option>12 - تبسة</option>
-<option>13 - تلمسان</option>
-<option>14 - تيارت</option>
-<option>15 - تيزي وزو</option>
-<option>16 - الجزائر</option>
-<option>17 - الجلفة</option>
-<option>18 - جيجل</option>
-<option>19 - سطيف</option>
-<option>20 - سعيدة</option>
-<option>21 - سكيكدة</option>
-<option>22 - سيدي بلعباس</option>
-<option>23 - عنابة</option>
-<option>24 - قالمة</option>
-<option>25 - قسنطينة</option>
-<option>26 - المدية</option>
-<option>27 - مستغانم</option>
-<option>28 - المسيلة</option>
-<option>29 - معسكر</option>
-<option>30 - ورقلة</option>
-<option>31 - وهران</option>
-<option>32 - البيض</option>
-<option>33 - إليزي</option>
-<option>34 - برج بوعريريج</option>
-<option>35 - بومرداس</option>
-<option>36 - الطارف</option>
-<option>37 - تندوف</option>
-<option>38 - تسمسيلت</option>
-<option>39 - الوادي</option>
-<option>40 - خنشلة</option>
-<option>41 - سوق أهراس</option>
-<option>42 - تيبازة</option>
-<option>43 - ميلة</option>
-<option>44 - عين الدفلى</option>
-<option>45 - النعامة</option>
-<option>46 - عين تموشنت</option>
-<option>47 - غرداية</option>
-<option>48 - غليزان</option>
-<option>49 - تيميمون</option>
-<option>50 - برج باجي مختار</option>
-<option>51 - أولاد جلال</option>
-<option>52 - بني عباس</option>
-<option>53 - عين صالح</option>
-<option>54 - عين قزام</option>
-<option>55 - تقرت</option>
-<option>56 - جانت</option>
-<option>57 - المغير</option>
-<option>58 - المنيعة</option>
+<option value="">جار تحميل الولايات...</option>
 </select>
 
 <textarea id="address" class="form-control" placeholder="العنوان"></textarea>
@@ -237,12 +123,30 @@ body {
 </div>
 
 </div>
-
-</div>
 </div>
 </div>
 
 <script>
+let algeriaData = {};
+
+// 🔥 تحميل الولايات من JSON
+fetch("communes.json")
+.then(res => res.json())
+.then(data => {
+    algeriaData = data;
+
+    const wilayaSelect = document.getElementById("wilaya");
+    wilayaSelect.innerHTML = '<option value="">اختر الولاية</option>';
+
+    Object.keys(data).forEach(wilaya => {
+        let opt = document.createElement("option");
+        opt.value = wilaya;
+        opt.textContent = wilaya;
+        wilayaSelect.appendChild(opt);
+    });
+});
+
+// 📦 إرسال الطلب
 function order(){
 let name = document.getElementById("name").value.trim();
 let phone = document.getElementById("phone").value.trim();
@@ -264,8 +168,9 @@ alert("اختر الولاية");
 return;
 }
 
-let msg = `طلب جديد 🛒%0A%0A` +
-`المنتج: اسم المنتج%0A` +
+let msg =
+`🛒 طلب جديد%0A%0A` +
+`المنتج: Zenix Store%0A` +
 `السعر: 5500 دج%0A%0A` +
 `الاسم: ${name}%0A` +
 `الهاتف: ${phone}%0A` +
