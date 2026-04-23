@@ -81,10 +81,10 @@
 <script>
 const BASE_PRICE = 5500;
 
-<script src="communes.js" defer></script>
-    
 function initWilayas() {
     const wSelect = document.getElementById("wilaya");
+    
+    // التأكد من أن البيانات محملة
     if (typeof algeriaData !== 'undefined') {
         const sortedWilayas = Object.keys(algeriaData).sort();
         wSelect.innerHTML = '<option value="">-- اختر الولاية --</option>';
@@ -92,13 +92,15 @@ function initWilayas() {
             let opt = new Option(wilaya, wilaya);
             wSelect.add(opt);
         });
+        console.log("تم تحميل الولايات بنجاح");
     } else {
-        // إذا لم يجد البيانات، يحاول مرة أخرى بعد ثانية
-        setTimeout(initWilayas, 1000);
+        console.log("جاري انتظار تحميل البيانات...");
+        setTimeout(initWilayas, 500);
     }
 }
 
-window.onload = initWilayas;
+// تشغيل الدالة عند تحميل الصفحة
+window.addEventListener('load', initWilayas);
 
 function loadCities() {
     const wVal = document.getElementById("wilaya").value;
