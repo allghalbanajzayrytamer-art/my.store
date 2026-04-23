@@ -54,7 +54,7 @@
 
         <label class="form-label">الولاية</label>
         <select class="form-select" id="wilaya" onchange="loadCities()">
-            <option value="">-- جاري تحميل الولايات --</option>
+            <option value="">-- اختر الولاية --</option>
         </select>
 
         <label class="form-label">البلدية</label>
@@ -63,7 +63,7 @@
         </select>
 
         <label class="form-label">الكمية</label>
-        <input type="number" class="form-control" id="qty" value="1" min="1" onchange="updateTotal()">
+        <input type="number" class="form-control" id="qty" value="1" min="1" oninput="updateTotal()">
 
         <div class="total">
             <span>المجموع الإجمالي:</span>
@@ -77,7 +77,7 @@
 </div>
 
 <script>
-// --- دمج بيانات الولايات مباشرة لضمان العمل 100% ---
+// 1. تعريف البيانات أولاً (الولايات والبلديات)
 const algeriaData = {
     "01- أدرار": ["أدرار", "تامست", "شروين", "رقان", "إن زغمير", "تيت", "أولف", "تيمقطن", "تمنطيط", "فنوغيل", "بودة", "أوقروت", "أولاد أحمد تيمي", "دلدول", "سالي", "أولاد عيسى", "تبلبالة", "زاوية كنتة", "أعمران", "مطارفة", "تالمين"],
     "02- الشلف": ["الشلف", "وادي الفضة", "بوقادير", "تنس", "أولاد فارس", "سيدي عكاشة", "تاوقريت", "بني حواء", "أولاد بن عبد القادر", "الزبوجة", "وادي سلي", "أبو الحسن", "المرسى", "الشطية", "مصديق", "تلعصة", "هيرة", "صنجاص", "سيدي عبد الرحمن", "مصدق", "بريرة", "مديونا", "بنايرية", "بوزغاية"],
@@ -141,7 +141,7 @@ const algeriaData = {
 
 const BASE_PRICE = 5500;
 
-// دالة تعبئة الولايات
+// 2. تعريف الدوال البرمجية
 function initWilayas() {
     const wSelect = document.getElementById("wilaya");
     const sortedWilayas = Object.keys(algeriaData).sort((a, b) => parseInt(a) - parseInt(b));
@@ -152,7 +152,6 @@ function initWilayas() {
     });
 }
 
-// دالة تحميل البلديات بناءً على الولاية المختارة
 function loadCities() {
     const wVal = document.getElementById("wilaya").value;
     const cSelect = document.getElementById("commune");
@@ -166,14 +165,15 @@ function loadCities() {
     }
 }
 
-// تحديث السعر الإجمالي
 function updateTotal() {
     let q = document.getElementById("qty").value;
-    if(q < 1) q = 1;
+    if(q < 1) {
+        q = 1;
+        document.getElementById("qty").value = 1;
+    }
     document.getElementById("totalText").innerText = (q * BASE_PRICE) + " دج";
 }
 
-// إرسال الطلب عبر واتساب
 function submitOrder() {
     const name = document.getElementById("name").value.trim();
     const phone = document.getElementById("phone").value.trim();
@@ -182,7 +182,7 @@ function submitOrder() {
     const qty = document.getElementById("qty").value;
 
     if (!name || name.length < 3) { alert("يرجى إدخال الاسم الكامل"); return; }
-    if (!/^0[5-7][0-9]{8}$/.test(phone)) { alert("رقم الهاتف غير صحيح (يجب أن يبدأ بـ 05 أو 06 أو 07)"); return; }
+    if (!/^0[5-7][0-9]{8}$/.test(phone)) { alert("رقم الهاتف غير صحيح (يجب أن يبدأ بـ 05 أو 06 أو 07 ويتكون من 10 أرقام)"); return; }
     if (!wilaya || !commune) { alert("يرجى اختيار الولاية والبلدية"); return; }
 
     const message = `*طلب جديد (Zenix Store)*\n` +
@@ -199,7 +199,7 @@ function submitOrder() {
     window.open(whatsappUrl, "_blank");
 }
 
-// تشغيل دالة الولايات فور تحميل الصفحة
+// 3. تشغيل دالة التهيئة عند تحميل الصفحة
 window.onload = initWilayas;
 </script>
 
