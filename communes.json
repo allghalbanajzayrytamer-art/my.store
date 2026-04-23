@@ -1,0 +1,9 @@
+fetch("wilayas-with-municipalities.json")
+  .then(res => res.json())
+  .then(data => {
+    window.algeriaData = {};
+    
+    data.forEach(w => {
+      window.algeriaData[w.nameFr] = w.communes.map(c => c.nameFr);
+    });
+  });
