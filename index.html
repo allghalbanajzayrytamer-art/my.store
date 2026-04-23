@@ -81,7 +81,8 @@
 <script>
 const BASE_PRICE = 5500;
 
-// هذه الدالة ستحاول تحميل الولايات حتى لو تأخر ملف communes.js قليلاً
+<script src="communes.js" defer></script>
+    
 function initWilayas() {
     const wSelect = document.getElementById("wilaya");
     if (typeof algeriaData !== 'undefined') {
