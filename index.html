@@ -1,185 +1,171 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+  <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zenix Store</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Zenix Store - PRO</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-    --accent-color: #27ae60;
-    --bg-light: #f8f9fa;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+:root{
+    --accent:#27ae60;
+    --dark:#0f172a;
+    --bg:#f6f7fb;
+}
+body{
+    font-family:Cairo,sans-serif;
+    background:var(--bg);
+    color:#222;
 }
 
-body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--bg-light);
+header{
+    background:linear-gradient(45deg,#0f2027,#203a43,#2c5364);
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+.logo{
+    font-family:Orbitron;
+    font-size:28px;
+}
+.logo span{color:#00ffcc}
+
+.card-box{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-top:20px;
 }
 
-/* LOGO */
-.logo-container {
-    background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
-    padding: 25px;
-    text-align: center;
-    color: white;
+.product-img{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    border-radius:10px;
 }
 
-.logo-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 28px;
+.price{
+    background:#eafaf1;
+    padding:12px;
+    border-right:5px solid var(--accent);
+    border-radius:10px;
+}
+.price-new{font-size:2rem;color:var(--accent);font-weight:bold}
+.price-old{text-decoration:line-through;color:#888;margin-right:10px}
+
+.form-control,.form-select{
+    border-radius:10px;
+    padding:12px;
 }
 
-.logo-title span { color: #00ffcc; }
-
-.logo-sub { font-size: 13px; opacity: 0.8; }
-
-.card-product {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.btn-order{
+    background:linear-gradient(45deg,#27ae60,#2ecc71);
+    border:none;
+    color:#fff;
+    width:100%;
+    padding:15px;
+    font-size:1.2rem;
+    border-radius:12px;
+    transition:.3s;
+}
+.btn-order:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(39,174,96,.3);
 }
 
-.product-img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: contain;
+.total{
+    background:#1e293b;
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
 }
-
-.price-new {
-    color: var(--accent-color);
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.price-old {
-    text-decoration: line-through;
-    color: gray;
-}
-
-.btn-order {
-    background: linear-gradient(45deg,#27ae60,#2ecc71);
-    color: white;
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-.form-control, .form-select {
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 8px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- LOGO -->
-<div class="logo-container">
-    <div class="logo-title">Zenix <span>Store</span></div>
-    <div class="logo-sub">by AMINE OV</div>
-</div>
-
-<div class="container mt-4">
+</style></head>
+<body><header>
+    <div class="logo">Zenix <span>Store</span></div>
+    <small>PRO Version by AMINE OV</small>
+</header><div class="container">
 <div class="row justify-content-center">
-<div class="col-md-6">
+<div class="col-md-6"><div class="card-box"><img src="pro.jpg" class="product-img" onerror="this.src='https://via.placeholder.com/500x500?text=Product'"><h4 class="mt-3">اسم المنتج الاحترافي</h4>
+<p>⭐⭐⭐⭐⭐ (124 تقييم)</p><div class="price mb-3">
+<span class="price-new" id="basePrice">5500</span> دج
+<span class="price-old">8900 دج</span>
+</div><div class="mb-2"><i class="fa fa-truck text-success"></i> توصيل 58 ولاية</div>
+<div class="mb-3"><i class="fa fa-check text-success"></i> الدفع عند الاستلام</div><label>الاسم الكامل</label> <input class="form-control" id="name">
 
-<div class="card-product">
+<label>الهاتف</label> <input class="form-control" id="phone">
 
-<img src="https://via.placeholder.com/600x600.png?text=Product" class="product-img">
+<label>الولاية</label> <select class="form-select" id="wilaya" onchange="loadCities()"></select>
 
-<h4 class="mt-3">اسم المنتج</h4>
+<label>البلدية</label> <select class="form-select" id="commune"></select>
 
-<p>⭐⭐⭐⭐⭐ (124 تقييم)</p>
+<label>الكمية</label> <input type="number" class="form-control" id="qty" value="1" min="1" onchange="updateTotal()">
 
-<p class="price-new">5500 دج <span class="price-old">8900 دج</span></p>
-
-<ul>
-<li>✔ توصيل 58 ولاية</li>
-<li>✔ الدفع عند الاستلام</li>
-</ul>
-
-<!-- FORM -->
-<input id="name" class="form-control" placeholder="الاسم الكامل">
-<input id="phone" class="form-control" placeholder="رقم الهاتف">
-
-<select id="wilaya" class="form-select">
-<option value="">جار تحميل الولايات...</option>
-</select>
-
-<textarea id="address" class="form-control" placeholder="العنوان"></textarea>
-
-<button class="btn-order" onclick="order()">
-<i class="fab fa-whatsapp"></i> تأكيد الطلب
-</button>
-
-</div>
-
+<div class="total mt-3">
+<span>المجموع</span>
+<span id="total">5500 دج</span>
+</div><button class="btn-order mt-3" onclick="submitOrder()">
+<i class="fab fa-whatsapp"></i> تأكيد عبر واتساب
+</button></div>
 </div>
 </div>
-</div>
+</div><script src="communes.js"></script><script>
+const PRICE = 5500;
 
-<script>
-let algeriaData = {};
+window.onload = function(){
+    let w = document.getElementById("wilaya");
+    for(let i in algeriaData){
+        let o=document.createElement("option");
+        o.value=i;
+        o.textContent=i;
+        w.appendChild(o);
+    }
+    updateTotal();
+};
 
-// 🔥 تحميل الولايات من JSON
-fetch("communes.json")
-.then(res => res.json())
-.then(data => {
-    algeriaData = data;
+function loadCities(){
+    let w = document.getElementById("wilaya").value;
+    let c = document.getElementById("commune");
+    c.innerHTML="<option>اختر البلدية</option>";
 
-    const wilayaSelect = document.getElementById("wilaya");
-    wilayaSelect.innerHTML = '<option value="">اختر الولاية</option>';
-
-    Object.keys(data).forEach(wilaya => {
-        let opt = document.createElement("option");
-        opt.value = wilaya;
-        opt.textContent = wilaya;
-        wilayaSelect.appendChild(opt);
-    });
-});
-
-// 📦 إرسال الطلب
-function order(){
-let name = document.getElementById("name").value.trim();
-let phone = document.getElementById("phone").value.trim();
-let wilaya = document.getElementById("wilaya").value;
-let address = document.getElementById("address").value.trim();
-
-if(name.length < 3){
-alert("الاسم غير صحيح");
-return;
+    if(algeriaData[w]){
+        algeriaData[w].forEach(x=>{
+            let o=document.createElement("option");
+            o.value=x;
+            o.textContent=x;
+            c.appendChild(o);
+        });
+    }
 }
 
-if(!/^0[5-7][0-9]{8}$/.test(phone)){
-alert("رقم الهاتف غير صالح");
-return;
+function updateTotal(){
+    let q = document.getElementById("qty").value;
+    document.getElementById("total").textContent = (q*PRICE)+" دج";
 }
 
-if(!wilaya){
-alert("اختر الولاية");
-return;
+function submitOrder(){
+    let name=document.getElementById("name").value.trim();
+    let phone=document.getElementById("phone").value.trim();
+    let wilaya=document.getElementById("wilaya").value;
+    let commune=document.getElementById("commune").value;
+    let qty=document.getElementById("qty").value;
+    let total=qty*PRICE;
+
+    if(name.length<3 || !/^0[5-7][0-9]{8}$/.test(phone) || !wilaya || !commune){
+        alert("اكمل المعلومات بشكل صحيح");
+        return;
+    }
+
+    let msg = `طلب جديد:\n`+
+    `الاسم: ${name}\n`+
+    `الهاتف: ${phone}\n`+
+    `الولاية: ${wilaya}\n`+
+    `البلدية: ${commune}\n`+
+    `الكمية: ${qty}\n`+
+    `المجموع: ${total} دج`;
+
+    let url = "https://wa.me/213663190202?text="+encodeURIComponent(msg);
+    window.open(url,"_blank");
 }
-
-let msg =
-`🛒 طلب جديد%0A%0A` +
-`المنتج: Zenix Store%0A` +
-`السعر: 5500 دج%0A%0A` +
-`الاسم: ${name}%0A` +
-`الهاتف: ${phone}%0A` +
-`الولاية: ${wilaya}%0A` +
-`العنوان: ${address}`;
-
-window.open(`https://wa.me/213663190202?text=${msg}`, "_blank");
-}
-</script>
-
-</body>
-</html>
+</script></body>
+  </html>
