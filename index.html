@@ -81,23 +81,23 @@
 <script>
 const BASE_PRICE = 5500;
 
-window.onload = function() {
+// هذه الدالة ستحاول تحميل الولايات حتى لو تأخر ملف communes.js قليلاً
+function initWilayas() {
     const wSelect = document.getElementById("wilaya");
-    
     if (typeof algeriaData !== 'undefined') {
-        // ترتيب الولايات حسب الأرقام الموجودة في communes.js
         const sortedWilayas = Object.keys(algeriaData).sort();
-        
+        wSelect.innerHTML = '<option value="">-- اختر الولاية --</option>';
         sortedWilayas.forEach(wilaya => {
-            let opt = document.createElement("option");
-            opt.value = wilaya;
-            opt.textContent = wilaya;
-            wSelect.appendChild(opt);
+            let opt = new Option(wilaya, wilaya);
+            wSelect.add(opt);
         });
     } else {
-        alert("تنبيه: لم يتم تحميل ملف communes.js بشكل صحيح. تأكد من رفعه في GitHub.");
+        // إذا لم يجد البيانات، يحاول مرة أخرى بعد ثانية
+        setTimeout(initWilayas, 1000);
     }
-};
+}
+
+window.onload = initWilayas;
 
 function loadCities() {
     const wVal = document.getElementById("wilaya").value;
@@ -105,23 +105,16 @@ function loadCities() {
     cSelect.innerHTML = '<option value="">-- اختر البلدية --</option>';
     
     if (wVal && algeriaData[wVal]) {
-        // ترتيب البلديات أبجدياً لسهولة البحث
         const sortedCities = [...algeriaData[wVal]].sort();
         sortedCities.forEach(city => {
-            let opt = document.createElement("option");
-            opt.value = city;
-            opt.textContent = city;
-            cSelect.appendChild(opt);
+            cSelect.add(new Option(city, city));
         });
     }
 }
 
 function updateTotal() {
     let q = document.getElementById("qty").value;
-    if(q < 1) {
-        q = 1;
-        document.getElementById("qty").value = 1;
-    }
+    if(q < 1) q = 1;
     document.getElementById("totalText").innerText = (q * BASE_PRICE) + " دج";
 }
 
@@ -132,15 +125,9 @@ function submitOrder() {
     const commune = document.getElementById("commune").value;
     const qty = document.getElementById("qty").value;
 
-    if (!name || name.length < 3) {
-        alert("يرجى إدخال الاسم الكامل بشكل صحيح"); return;
-    }
-    if (!/^0[5-7][0-9]{8}$/.test(phone)) {
-        alert("يرجى إدخال رقم هاتف جزائري صحيح (10 أرقام)"); return;
-    }
-    if (!wilaya || !commune) {
-        alert("يرجى اختيار الولاية والبلدية"); return;
-    }
+    if (!name || name.length < 3) { alert("يرجى إدخال الاسم الكامل"); return; }
+    if (!/^0[5-7][0-9]{8}$/.test(phone)) { alert("رقم الهاتف غير صحيح"); return; }
+    if (!wilaya || !commune) { alert("يرجى اختيار الولاية والبلدية"); return; }
 
     const message = `*طلب جديد (Zenix Store)*\n` +
                     `--------------------------\n` +
