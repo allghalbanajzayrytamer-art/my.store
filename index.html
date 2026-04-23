@@ -85,15 +85,17 @@ window.onload = function() {
     const wSelect = document.getElementById("wilaya");
     
     if (typeof algeriaData !== 'undefined') {
-        // ترتيب الولايات حسب الرقم (01، 02...)
+        // ترتيب الولايات حسب الأرقام الموجودة في communes.js
         const sortedWilayas = Object.keys(algeriaData).sort();
         
         sortedWilayas.forEach(wilaya => {
-            let opt = new Option(wilaya, wilaya);
-            wSelect.add(opt);
+            let opt = document.createElement("option");
+            opt.value = wilaya;
+            opt.textContent = wilaya;
+            wSelect.appendChild(opt);
         });
-    } else {<script src="communes.js"></script>
-
+    } else {
+        alert("تنبيه: لم يتم تحميل ملف communes.js بشكل صحيح. تأكد من رفعه في GitHub.");
     }
 };
 
@@ -104,9 +106,12 @@ function loadCities() {
     
     if (wVal && algeriaData[wVal]) {
         // ترتيب البلديات أبجدياً لسهولة البحث
-        const sortedCities = algeriaData[wVal].sort();
+        const sortedCities = [...algeriaData[wVal]].sort();
         sortedCities.forEach(city => {
-            cSelect.add(new Option(city, city));
+            let opt = document.createElement("option");
+            opt.value = city;
+            opt.textContent = city;
+            cSelect.appendChild(opt);
         });
     }
 }
@@ -127,7 +132,6 @@ function submitOrder() {
     const commune = document.getElementById("commune").value;
     const qty = document.getElementById("qty").value;
 
-    // فحص المدخلات
     if (!name || name.length < 3) {
         alert("يرجى إدخال الاسم الكامل بشكل صحيح"); return;
     }
